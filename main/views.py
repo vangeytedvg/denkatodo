@@ -1,3 +1,10 @@
+"""
+"  views.py
+"  Author  : Danny Van Geyte
+"  Purpose : define django views
+"  File date : 22/04/2020
+"
+"""
 from django.shortcuts import render, redirect
 from .models import Todo, TaskUser
 from django.contrib.auth import authenticate, login, logout
