@@ -7,7 +7,7 @@ html {
 }
 .user_card {
 	width: 800px;
-	margin-top: 50px;
+	margin-top: 1px;
 	margin-bottom: auto;
 	background: #74cfbf;
 	position: relative;
@@ -64,4 +64,35 @@ html {
 	color: #fff;
 	padding: 10px;
 	margin-top: 10px;
+}
+
+#wrapper {
+	margin-top: 10% !important;
+}
+#content {
+	background: beige;
+	padding: 25px;
+}
+#content > h2 {
+	font-size: 18px;
+	text-align: center;
+	padding-top: 0;
+}
+.t10 {
+	margin-top: 10px;
+}
+.t20 {
+	margin-top: 20px;
+}
+.todo-completed {
+	text-decoration: line-through;
+	background: rgba(149, 165, 166, .3);
+}
+footer {
+	margin-top: auto;
+	margin-bottom: 100px;
+	color: green;
+}
+.list-group-item {
+	color: black;
 }

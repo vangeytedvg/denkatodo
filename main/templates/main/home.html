@@ -1,16 +1,61 @@
 {%  extends 'main/base.html' %}
 {% load static %}
 {% block content %}
-	<div class="container h-100">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<div class="container-fluid" id="wrapper">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="card-header text-center">
 					<h3 class="card-title">Denka Tech Todo's</h3>
 				</div>
 				<div>
-					{% for todo in todos %}
-						{{ todo }}
-					{% endfor %}
+					<div class="text-center">
+						<h2>What tasks do you want to do today?</h2>
+					</div>
+					<div class="card-body">
+						<form action="{% url 'add' %}" method="POST">
+							{% csrf_token %}
+							<div class="form-group">
+								<div class="input-group">
+									{{ form }}
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-success" id="add-btn">ADD</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 justify-content-center">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
+										<i class="fas fa-trash-alt"></i> DELETE COMPLETED
+									</button></a>
+								</div>
+								<div class="btn-group">
+									<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
+										<i class="fas fa-trash"></i> DELETE ALL
+									</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="list-group t20">
+						{% for todo in todos %}
+							<li class="list-group-item"><div>{{ todo }}</div>
+								Pwet {{ todo.date_created }}
+								Pwat {{ date }}
+								{% if todo.date_created == date.date %}
+									<div><small class="text-muted">{{ todo.date_created }}</small></div></li>
+								{% else %}
+									<div><small class="text-muted">Zojuist</small></div></li>
+									
+								{% endif %}
+						{% endfor %}
+					</ul>
 					<p class="card-text"><small class="text-muted">Most recent addition : </small>
 						<small class="last_added">{{ lasttodo }}</small>
 					</p>
@@ -18,5 +63,4 @@
 			</div>
 		</div>
 	</div>
-	
 {% endblock %}

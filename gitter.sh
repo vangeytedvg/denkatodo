@@ -4,7 +4,9 @@
 print_intro() {
 	echo GIT Script Executor
 	echo "----------------------------------------------------"
-	echo "GIT utility script by Danny Van Geyte"
+	echo "GIT utility script."
+	echo "Written by Danny Van Geyte (2020)"
+	echo "MIT license"
 	echo "----------------------------------------------------"
 }
 
