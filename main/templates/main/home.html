@@ -46,13 +46,14 @@
 					<ul class="list-group t20">
 						{% for todo in todos %}
 							<li class="list-group-item"><div>{{ todo }}</div>
-								Pwet {{ todo.date_created }}
-								Pwat {{ date }}
-								{% if todo.date_created == date.date %}
-									<div><small class="text-muted">{{ todo.date_created }}</small></div></li>
+								{% if todo.is_from_today %}
+									{% if todo.is_afew_momentsago %}
+										<div><small class="text-muted">A few moments ago</small></div></li>		
+									{% else %}
+										<div><small class="text-muted">Created today at {{ todo.date_created.time }}</small></div></li>		
+									{% endif %}
 								{% else %}
-									<div><small class="text-muted">Zojuist</small></div></li>
-									
+									<div><small class="text-muted">Recorded on {{ todo.date_created }}</small></div></li>								
 								{% endif %}
 						{% endfor %}
 					</ul>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import date, time
+from datetime import datetime, date, time, timedelta
+import pytz
 
 
 class TaskUser(models.Model):
@@ -31,4 +32,16 @@ class Todo(models.Model):
 
     @property
     def is_from_today(self):
-        return date.today() == self.date
+        return date.today() == self.date_created.date()
+
+    @property
+    def is_afew_momentsago(self):
+        d1 = self.date_created + timedelta(minutes=3)
+        d1 = d1.isoformat()
+        d2 = datetime.now().isoformat()
+        print("DB", d1)
+        print("SYS", d2)
+        if d2 > d1:
+            return False
+        else:
+            return True
