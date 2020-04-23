@@ -1,0 +1,39 @@
+{% load static %}
+<style type="text/css">
+    #hello-msg {
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+    }
+    .ckwas {
+        font-size: 18px;
+        color: #4aa832;
+        margin-right: 15px;
+    }
+</style>
+<!-- Navigation bar section template, included in main.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- When a user clicks on the logo, we go to the main page -->
+    <a class="navbar-brand" href="/"><img src="{% static 'images/denkatech.png' %}"></a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Settings</a>
+                </li>            
+        </ul>
+    </div>
+    <span id="hello-msg">Current user: {{ request.user }}</span>
+    <span><a class="ckwas" href="">Log out</a></span>
+</nav>

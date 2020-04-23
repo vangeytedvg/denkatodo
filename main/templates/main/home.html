@@ -1,0 +1,22 @@
+{%  extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="card-header text-center">
+					<h3 class="card-title">Denka Tech Todo's</h3>
+				</div>
+				<div>
+					{% for todo in todos %}
+						{{ todo }}
+					{% endfor %}
+					<p class="card-text"><small class="text-muted">Most recent addition : </small>
+						<small class="last_added">{{ lasttodo }}</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
