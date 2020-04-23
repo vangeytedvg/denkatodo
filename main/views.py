@@ -93,5 +93,16 @@ def deleteAll(request):
     return redirect('home')
 
 
-def completeTodo(request, pk):
+def completeTodo(request, todo_id):
+    # ---- Mark a todo as done
+    todo = Todo.objects.get(pk=todo_id)
+    todo.status = "DN"
+    todo.save()
+    return redirect('home')
+
+def inprogressTodo(request, todo_id):
+    # ---- Mark a todo as done
+    todo = Todo.objects.get(pk=todo_id)
+    todo.status = "IP"
+    todo.save()
     return redirect('home')
