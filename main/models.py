@@ -32,15 +32,17 @@ class Todo(models.Model):
 
     @property
     def is_from_today(self):
+        # ---- Check if todo was entered today
         return date.today() == self.date_created.date()
 
     @property
     def is_afew_momentsago(self):
+        # ---- Selfmade function to check if a new record
+        # ---- was recently added (within 3 minutes)
         d1 = self.date_created + timedelta(minutes=3)
+        # Need to convert the date formats to ISO format!
         d1 = d1.isoformat()
         d2 = datetime.now().isoformat()
-        print("DB", d1)
-        print("SYS", d2)
         if d2 > d1:
             return False
         else:
