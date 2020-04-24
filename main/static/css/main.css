@@ -16,6 +16,21 @@ a:visited {
   color: black;
 }
 
+#title-font {
+	color: #aaa;
+	font-family: 'Ewert';
+	font-size:55px;
+}
+#title-font2 {
+	color: #fff;
+	font-family: 'Lobster';	
+}
+#title-font3 {
+	color: #40eb34;
+	font-family: 'Redressed';	
+	font-size: 50px;
+}
+
 /* mouse over link */
 a:hover {
   color: hotpink;
@@ -26,18 +41,18 @@ a:active {
   color: blue;
 } 
 .user_card {
-	width: auto;
-	margin-top: 1px;
+	width: 60%;
+	margin-top: 0px;
 	margin-bottom: auto;
 	background: #4e5752;
 	position: relative;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	padding: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 15px;
+	box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 15px;
 }
 
@@ -47,7 +62,6 @@ a:active {
 
 #form-title{
 	color: #fff;
-	
 }
 
 .last_added {
@@ -86,7 +100,7 @@ a:active {
 	margin-top: 10px;
 }
 #wrapper {
-	margin-top: 10% !important;
+	margin-top: 2% !important;
 }
 #content {
 	background: beige;
