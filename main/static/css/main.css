@@ -26,7 +26,7 @@ a:active {
   color: blue;
 } 
 .user_card {
-	width: 800px;
+	width: auto;
 	margin-top: 1px;
 	margin-bottom: auto;
 	background: #4e5752;
@@ -126,4 +126,8 @@ footer {
 }
 .whattodotitle {
 	color: white;
+}
+.copyright {
+	color: white;
+	font-style: italic;
 }
