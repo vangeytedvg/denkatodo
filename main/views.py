@@ -43,7 +43,10 @@ def addTodo(request):
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
-            form.save()
+            t = form.save(commit=False)
+            t.task_owner_id = request.user.id
+            t.status = "OP"
+            t.save()
             return redirect('home')
     currentUser = request.user
     context = {'form': form, 'currentUser': currentUser}
@@ -85,14 +88,21 @@ def logoutUser(request):
 # ---- This section contains the views for managing todos
 
 
+@login_required(login_url='login')
 def deleteCompleted(request):
+    # Remove all tasks marked with 'DN' (Done), for the current logged user
+    current_user = request.user.id
+    Todo.objects.filter(status='DN', task_owner=current_user).delete()
+    messages.success(request, "Completed records were removed!")
     return redirect('home')
 
 
+@login_required(login_url='login')
 def deleteAll(request):
     return redirect('home')
 
 
+@login_required(login_url='login')
 def completeTodo(request, todo_id):
     # ---- Mark a todo as done
     todo = Todo.objects.get(pk=todo_id)
@@ -100,6 +110,8 @@ def completeTodo(request, todo_id):
     todo.save()
     return redirect('home')
 
+
+@login_required(login_url='login')
 def inprogressTodo(request, todo_id):
     # ---- Mark a todo as done
     todo = Todo.objects.get(pk=todo_id)

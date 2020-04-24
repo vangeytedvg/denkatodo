@@ -3,7 +3,8 @@ html {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	background: #7abecc !important;
+	/* background: #7abecc !important; */
+	background: #344039 !important;
 }
  /* unvisited link */
 a:link {
@@ -28,7 +29,7 @@ a:active {
 	width: 800px;
 	margin-top: 1px;
 	margin-bottom: auto;
-	background: #74cfbf;
+	background: #4e5752;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -122,4 +123,7 @@ footer {
 .list-group-item {
 	color: black;
 
+}
+.whattodotitle {
+	color: white;
 }
