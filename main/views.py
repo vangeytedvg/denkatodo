@@ -41,6 +41,7 @@ def home(request):
 @login_required(login_url='login')
 def addTodo(request):
     form = TodoForm()
+    print("User id : ", request.user.id)
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
@@ -105,9 +106,11 @@ def registerPage(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-
-            group = Group.objects.get(name='todomaker')
-            user.groups.add(group)
+            TaskUser.objects.create(
+                user=user,
+                name=user.username,
+                email=user.email,
+            )
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
 

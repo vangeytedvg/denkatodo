@@ -34,6 +34,6 @@
                 </li>            
         </ul>
     </div>
-    <span id="hello-msg">Current user: {{ request.user }}</span>
+    <span id="hello-msg">Current user: {{ request.user }} {{ request.user.id }}</span>
     <span><a class="btn btn-sm btn-success" href="{% url 'logout' %}">Log out</a></span>
 </nav>
