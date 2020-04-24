@@ -50,7 +50,7 @@
 					<table class="table table-sm">
 						<tr>
 							<th>Task</th>
-							<th>Date entered</th>
+							<!--<th>Date entered</th>-->
 							<th>Done</th>
 							<th>Status</th>
 						</tr>
@@ -67,12 +67,12 @@
 								{% endif %}
 								{% if todo.is_from_today %}
 									{% if todo.is_afew_momentsago %}
-										<td><small class="text-muted">Added a few moments ago...</small></td>
+										<small class="text-muted">Added a few moments ago...</small>
 									{% else %}
-										<td><small class="text-muted">Created today at {{ todo.date_created.time }}</small></td>
+										<small class="text-muted">Created today at {{ todo.date_created.time }}</small>
 									{% endif %}
 								{% else %}
-									<td><small class="text-muted">Recorded on {{ todo.date_created }}</small></td>
+									<small class="text-muted">Recorded on {{ todo.date_created }}</small>
 								{% endif %}
 								{% if todo.status == "OP" %}
 									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
@@ -81,16 +81,16 @@
 								{% if todo.status == "DN" %}
 									<td>closed</td><td>Done</td>
 								{% endif %}
+								</td>
 								{% if todo.status == "IP" %}
 									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
 									<td>In Progress</td>
 								{% endif %}
 							</tr>
 						{% endfor %}
-					</table>
-					
-					<p class="card-text"><small class="text-muted">Most recent addition : </small>
-						<small class="last_added">{{ lasttodo }}</small>
+					</table>					
+					<div class="card-text"><small class="text-muted">Most recent addition : </small>
+						<small class="last_added">{{ lasttodo }}</small></div>
 					</p>
 				</div>
 			</div>
