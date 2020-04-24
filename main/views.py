@@ -139,3 +139,21 @@ def inprogressTodo(request, todo_id):
     todo.status = "IP"
     todo.save()
     return redirect('home')
+
+
+@login_required(login_url='login')
+def recallTodo(request, todo_id):
+    # ---- Mark a todo as done
+    todo = Todo.objects.get(pk=todo_id)
+    todo.status = "OP"
+    todo.save()
+    return redirect('home')
+
+
+@login_required(login_url='login')
+def reopenClosed(request, todo_id):
+    # ---- Mark a todo as done
+    todo = Todo.objects.get(pk=todo_id)
+    todo.status = "OP"
+    todo.save()
+    return redirect('home')

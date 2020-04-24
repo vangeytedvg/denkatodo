@@ -27,7 +27,4 @@ class CreateUserForm(UserCreationForm):
         """
     class Meta:
         model = User
-        # If we set __all__ here, we get trouble because there are much
-        # more fields than needed, if these four are set, the system only
-        # checks these four!
         fields = ['username', 'email', 'password1', 'password2']

@@ -20,7 +20,7 @@
 								<div class="input-group">
 									<input type="text" class="form-control" {{form.task}}
 									<span class="input-group-btn">
-										<button type="submit" class="btn btn-success" id="add-btn">ADD</button>
+										<button type="submit" class="btn btn-success" id="add-btn"><i class="fas fa-save"></i> ADD</button>
 									</span>
 								</div>
 							</div>
@@ -54,15 +54,15 @@
 							<th>Done</th>
 							<th>Status</th>
 						</tr>
+
 						{% for todo in todos %}
-							<tr><td>
+							<tr><td width="80%">
 								{% if todo.status == "DN" %}
 									<div class="todo-completed">{{ todo.task }}</div>
 									{% elif todo.status == "IP" %}
-									<!-- In progress -->
-									<div class="todo-inprogress">{{ todo.task }}</div>
+										<div class="todo-inprogress">{{ todo.task }}</div>
 									{% elif todo.status == "OP" %}
-									<!-- Open -->
+									
 									{{ todo.task }}
 								{% endif %}
 								{% if todo.is_from_today %}
@@ -73,22 +73,55 @@
 									{% endif %}
 								{% else %}
 									<small class="text-muted">Recorded on {{ todo.date_created }}</small>
-								{% endif %}
+								{% endif %}			
 								{% if todo.status == "OP" %}
-									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
-									<td><a class="btn btn-sm btn-info" href="{% url 'inprogressTodo' todo.id %}">Work on it</a></td>
+									<td>
+										<a href="{% url 'complete' todo.id %}"><button type="button" class="btn btn-warning">
+											<i class="far fa-check-circle"></i> Done
+										</button></a>
+									
+									</td>
+									<td>
+										<a href="{% url 'inprogressTodo' todo.id %}"><button type="button" class="btn btn-info">
+											<i class="far fa-folder-open"></i> Open
+										</button></a>
+									
+									</td>
 								{% endif %}
+
+								
+
 								{% if todo.status == "DN" %}
-									<td>closed</td><td>Done</td>
+									<td>
+										<a href="{% url 'recall' todo.id %}"><button type="button" class="btn btn-warning">
+											<i class="far fa-folder-open"></i> Undo
+										</button></a>
+								
+									</td>
+									<td>
+										<a href="{% url 'recall' todo.id %}"><button type="button" class="btn btn-success">
+											<i class="far fa-folder"></i> Stage
+										</button></a>									
+									</td>							
 								{% endif %}
 								</td>
 								{% if todo.status == "IP" %}
-									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
-									<td>In Progress</td>
+									<td>
+										<a href="{% url 'complete' todo.id %}"><button type="button" class="btn btn-warning">
+											<i class="far fa-check-circle"></i> Done
+										</button></a>
+								
+									</td>
+									<td>
+										<a href="{% url 'recall' todo.id %}"><button type="button" class="btn btn-success">
+											<i class="far fa-folder"></i> Stage
+										</button></a>									
+									</td>							
 								{% endif %}
 							</tr>
 						{% endfor %}
-					</table>					
+					</table>	
+					<hr>				
 					<div class="card-text"><small class="text-muted">Most recent addition : </small>
 						<small class="last_added">{{ lasttodo }}</small></div>
 					</p>
