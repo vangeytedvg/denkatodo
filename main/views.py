@@ -13,9 +13,10 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.contrib.auth.forms import UserCreationForm
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.views.decorators.http import require_POST
-from .forms import TodoForm
+from .forms import TodoForm, CreateUserForm
 
 # Create your views here.
 
@@ -95,6 +96,23 @@ def deleteCompleted(request):
     Todo.objects.filter(status='DN', task_owner=current_user).delete()
     messages.success(request, "Completed records were removed!")
     return redirect('home')
+
+
+def registerPage(request):
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name='todomaker')
+            user.groups.add(group)
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('login')
+
+    context = {'form': form}
+    return render(request, 'main/register.html', context)
 
 
 @login_required(login_url='login')

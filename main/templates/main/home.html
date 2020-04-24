@@ -26,75 +26,74 @@
 							</div>
 						</form>
 					</div>
-
-					<div class="row t10">			
+					<div class="row t10">
 						<div class="col-lg-12 justify-content-center">
-								<div>{% for message in messages %}
-									<p id="messages">{{message}}</p>
-								{% endfor %}</div>
-							
-							<div class="btn-toolbar">
-								<div class="btn-group">
-									<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
-										<i class="fas fa-trash-alt"></i> DELETE COMPLETED
-									</button></a>
-								</div>
-								<div class="btn-group">
-									<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
-										<i class="fas fa-trash"></i> DELETE ALL
-									</button></a>
-								</div>								
+							<div>{% for message in messages %}
+								<p id="messages">{{message}}</p>
+							{% endfor %}
+						</div>						
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
+									<i class="fas fa-trash-alt"></i> DELETE COMPLETED
+								</button></a>
+							</div>
+							<div class="btn-group">
+								<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
+									<i class="fas fa-trash"></i> DELETE ALL
+								</button></a>
 							</div>
 						</div>
 					</div>
-					<div class="card card-body">
-						<table class="table table-sm">
-							<tr>
-								<th>Task</th>
-								<th>Date entered</th>
-								<th>Done</th>
-								<th>Status</th>
-							</tr>
-							{% for todo in todos %}
-								<tr><td>
-									{% if todo.status == "DN" %}
-										<div class="todo-completed">{{ todo.task }}</div>
-										{% elif todo.status == "IP" %}
-										<!-- In progress -->
-										<div class="todo-inprogress">{{ todo.task }}</div>
-										{% elif todo.status == "OP" %}
-										<!-- Open -->
-										{{ todo.task }}
-									{% endif %}
-									{% if todo.is_from_today %}
-										{% if todo.is_afew_momentsago %}
-											<td><small class="text-muted">Added a few moments ago...</small></td>
-										{% else %}
-											<td><small class="text-muted">Created today at {{ todo.date_created.time }}</small></td>
-										{% endif %}
+				</div>
+				<div class="card card-body">
+					<table class="table table-sm">
+						<tr>
+							<th>Task</th>
+							<th>Date entered</th>
+							<th>Done</th>
+							<th>Status</th>
+						</tr>
+						{% for todo in todos %}
+							<tr><td>
+								{% if todo.status == "DN" %}
+									<div class="todo-completed">{{ todo.task }}</div>
+									{% elif todo.status == "IP" %}
+									<!-- In progress -->
+									<div class="todo-inprogress">{{ todo.task }}</div>
+									{% elif todo.status == "OP" %}
+									<!-- Open -->
+									{{ todo.task }}
+								{% endif %}
+								{% if todo.is_from_today %}
+									{% if todo.is_afew_momentsago %}
+										<td><small class="text-muted">Added a few moments ago...</small></td>
 									{% else %}
-										<td><small class="text-muted">Recorded on {{ todo.date_created }}</small></td>
+										<td><small class="text-muted">Created today at {{ todo.date_created.time }}</small></td>
 									{% endif %}
-									{% if todo.status == "OP" %}
-										<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
-										<td><a class="btn btn-sm btn-info" href="{% url 'inprogressTodo' todo.id %}">Work on it</a></td>
-									{% endif %}
-									{% if todo.status == "DN" %}
-										<td>closed</td><td>Done</td>
-									{% endif %}
-									{% if todo.status == "IP" %}
-										<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
-										<td>In Progress</td>
-									{% endif %}
-								</tr>
-							{% endfor %}
-						</table>
-						
-						<p class="card-text"><small class="text-muted">Most recent addition : </small>
-							<small class="last_added">{{ lasttodo }}</small>
-						</p>
-					</div>
+								{% else %}
+									<td><small class="text-muted">Recorded on {{ todo.date_created }}</small></td>
+								{% endif %}
+								{% if todo.status == "OP" %}
+									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
+									<td><a class="btn btn-sm btn-info" href="{% url 'inprogressTodo' todo.id %}">Work on it</a></td>
+								{% endif %}
+								{% if todo.status == "DN" %}
+									<td>closed</td><td>Done</td>
+								{% endif %}
+								{% if todo.status == "IP" %}
+									<td><a class="btn btn-sm btn-success" href="{% url 'complete' todo.id %}">Done</a></td>
+									<td>In Progress</td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+					</table>
+					
+					<p class="card-text"><small class="text-muted">Most recent addition : </small>
+						<small class="last_added">{{ lasttodo }}</small>
+					</p>
 				</div>
 			</div>
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
