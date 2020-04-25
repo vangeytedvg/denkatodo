@@ -180,8 +180,7 @@ def archive(request):
 
 @login_required(login_url='login')
 def settings(request):
-    users = User.objects.all()
+    users = User.objects.all().order_by('username')
     context = {'users': users}
-    for a in users:
-        print(a.username)
+
     return render(request, 'main/settings.html', context)

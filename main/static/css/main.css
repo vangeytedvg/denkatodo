@@ -168,10 +168,24 @@ footer {
 .box {
   display: flex;
   color: green;
-  
   flex-wrap: wrap;
   flex-direction: column;
-  width: 500px;
+  width: 800px;
   height: 400px;
   align-content: space-between;
 }      
+.userbox {
+	margin-left: 10px; 
+	margin-right: 10px;
+}
+.normalbox {
+	background: grey; 
+	color: white;
+}
+.staffbox {
+	background: green; 
+	color: white;
+}
+.settings_box {
+	background: blue; 
+	color: white;
