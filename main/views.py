@@ -10,13 +10,14 @@ from .models import Todo, TaskUser
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
-
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserCreationForm
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.views.decorators.http import require_POST
 from .forms import TodoForm, CreateUserForm
+
 
 # Create your views here.
 
@@ -127,6 +128,8 @@ def deleteAll(request):
 def completeTodo(request, todo_id):
     # ---- Mark a todo as done
     todo = Todo.objects.get(pk=todo_id)
+    todo.date_closed = datetime.now()
+    print(datetime.now())
     todo.status = "DN"
     todo.save()
     return redirect('home')
@@ -134,7 +137,7 @@ def completeTodo(request, todo_id):
 
 @login_required(login_url='login')
 def inprogressTodo(request, todo_id):
-    # ---- Mark a todo as done
+    # ---- Mark a todo as in progress
     todo = Todo.objects.get(pk=todo_id)
     todo.status = "IP"
     todo.save()

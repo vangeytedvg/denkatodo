@@ -25,7 +25,8 @@ class Todo(models.Model):
     task = models.CharField(max_length=200, null=False, blank=False)
     status = models.CharField(max_length=2, choices=TASK_STATUS, default='OP', null=False, blank=False)
     task_owner = models.ForeignKey(TaskUser, on_delete=models.CASCADE)
-    date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True, null=True)
+    date_closed = models.DateTimeField(auto_now_add=False, auto_now=False, null=True, blank=True)
 
     def __str__(self):
         return self.task
