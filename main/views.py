@@ -35,23 +35,6 @@ def home(request):
     return render(request, 'main/home.html', context)
 
 
-@login_required(login_url='login')
-def addTodo(request):
-    form = TodoForm()
-    print("User id : ", request.user.id)
-    if request.method == "POST":
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            t = form.save(commit=False)
-            t.task_owner_id = request.user.id
-            t.status = "OP"
-            t.save()
-            return redirect('home')
-    currentUser = request.user
-    context = {'form': form, 'currentUser': currentUser}
-    return render(request, 'main/home.html', context)
-
-
 @unauthenticated_user
 def loginPage(request):
     """
@@ -84,8 +67,6 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-# ---- This section contains the views for managing todos
-
 
 def registerPage(request):
     form = CreateUserForm()
@@ -104,6 +85,24 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, 'main/register.html', context)
+
+
+# ---- This section contains the views for managing todos
+@login_required(login_url='login')
+def addTodo(request):
+    form = TodoForm()
+    print("User id : ", request.user.id)
+    if request.method == "POST":
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            t = form.save(commit=False)
+            t.task_owner_id = request.user.id
+            t.status = "OP"
+            t.save()
+            return redirect('home')
+    currentUser = request.user
+    context = {'form': form, 'currentUser': currentUser}
+    return render(request, 'main/home.html', context)
 
 
 @login_required(login_url='login')
