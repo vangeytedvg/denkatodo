@@ -64,7 +64,7 @@
 									{% elif todo.status == "OP" %}
 										{{ todo.task }}
 									{% endif %}															
-									
+									<p>									
 									{% if todo.status == "OP" %}
 										{% if todo.is_from_today %}
 											<small class="text-muted">Created today at {{ todo.date_created }}</small>										
@@ -92,7 +92,7 @@
 										{% endif %}
 										<td>
 											<a href="{% url 'recall' todo.id %}"><button type="button" class="btn btn-warning">
-												<i class="far fa-folder-open"></i> Undo
+												<i class="fas fa-undo"></i> Undo
 											</button></a>
 										</td>
 										<td>
@@ -100,12 +100,11 @@
 										</td>
 									{% endif %}
 								</td>
-							{% if todo.status == "IP" %}
+								{% if todo.status == "IP" %}
 								<td>
 									<a href="{% url 'complete' todo.id %}"><button type="button" class="btn btn-warning">
 										<i class="far fa-check-circle"></i> Done
-									</button></a>
-									
+									</button></a>					
 								</td>
 								<td>
 									<a href="{% url 'recall' todo.id %}"><button type="button" class="btn btn-success">

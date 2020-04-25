@@ -1,0 +1,19 @@
+{%  extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	{% if request.user.is_staff %}
+		<div class="container-fluid">
+			<div class="d-flex justify-content-center h-100">
+				<div class="box card justify-content-center">
+					{% for user in users %}
+						<div><img class="card-img-top" src="{% static 'images/user.png' %}" alt="Card image"></div>
+						<div class="text-center">{{ user.username }}</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<h3 class="card-title" id="title-font">You have no authorization to view this page!</h3>
+				<span><a class="btn btn-sm btn-success" href="{% url 'home' %}">Back</a></span>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

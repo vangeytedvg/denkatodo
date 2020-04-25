@@ -1,0 +1,46 @@
+{%  extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container-fluid" id="wrapper">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="card-header text-center">
+					<h3 class="card-title" id="title-font3">Archived tasks</h3>
+				</div>
+				<div>
+					<div class="card-body">
+						<!-- Form to enter the todo task -->
+					</div>
+					<div class="row t10">
+						<div class="col-lg-12 justify-content-center">
+							<div>{% for message in messages %}
+								<p id="messages">{{message}}</p>
+							{% endfor %}
+						</div>
+						
+					</div>
+				</div>
+				<div class="card card-body">
+					<table class="table table-sm">
+						<tr>
+							<th>Task</th>
+							<!--<th>Date entered</th>-->
+						</tr>
+						{% for todo in archive %}
+							<tr>
+								<td width="80%">
+									{{ todo.task }}
+									<small class="text-muted">Created on {{ todo.date_created }}</small>
+									<small class="text-muted">Closed on {{ todo.date_closed }}</small>
+									<small class="text-muted">Duration {{ todo.diff_date }}</small>
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+					
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

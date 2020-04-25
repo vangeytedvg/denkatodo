@@ -15,7 +15,11 @@ a:link {
 a:visited {
   color: black;
 }
-
+#text-audiowide {
+	color: #40eb34;
+	font-family: 'Audiowide';
+	font-size:30px;	
+}
 #title-font {
 	color: #aaa;
 	font-family: 'Ewert';
@@ -40,6 +44,22 @@ a:hover {
 a:active {
   color: blue;
 } 
+
+.settings_card {
+	width: 90%;
+	margin-top: 0px;
+	margin-bottom: auto;
+	background: #4e5752;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 15px;
+	box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 15px;
+}
 .user_card {
 	width: 60%;
 	margin-top: 0px;
@@ -145,3 +165,13 @@ footer {
 	color: white;
 	font-style: italic;
 }
+.box {
+  display: flex;
+  color: green;
+  
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  align-content: space-between;
+}      

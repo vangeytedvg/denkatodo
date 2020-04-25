@@ -6,20 +6,16 @@
 "
 """
 from django.shortcuts import render, redirect
-from .models import Todo, TaskUser
+from .models import Todo, TaskUser, ArchivedTodo
 from django.contrib.auth import authenticate, login, logout
-
+from .forms import TodoForm, CreateUserForm
 from django.contrib import messages
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
-from django.contrib.auth.forms import UserCreationForm
-from .decorators import unauthenticated_user, allowed_users, admin_only
-from django.views.decorators.http import require_POST
-from .forms import TodoForm, CreateUserForm
+from django.contrib.auth.models import User
+from .decorators import unauthenticated_user
 
-
-# Create your views here.
+# ---- MAIN PAGE
 
 
 @login_required(login_url='login')
@@ -91,15 +87,6 @@ def logoutUser(request):
 # ---- This section contains the views for managing todos
 
 
-@login_required(login_url='login')
-def deleteCompleted(request):
-    # Remove all tasks marked with 'DN' (Done), for the current logged user
-    current_user = request.user.id
-    Todo.objects.filter(status='DN', task_owner=current_user).delete()
-    messages.success(request, "Completed records were removed!")
-    return redirect('home')
-
-
 def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
@@ -117,6 +104,25 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, 'main/register.html', context)
+
+
+@login_required(login_url='login')
+def deleteCompleted(request):
+    # Remove all tasks marked with 'DN' (Done), for the current logged user
+    current_user = request.user.id
+    xterminate = Todo.objects.filter(status='DN', task_owner=current_user)  # .delete()
+    # Before we remove items, we put them in the archive bin
+    for item in xterminate:
+        arch = ArchivedTodo()
+        arch.task = item.task
+        arch.status = "DN"
+        arch.task_owner = item.task_owner
+        arch.date_created = item.date_created
+        arch.date_closed = item.date_closed
+        arch.save()
+        item.delete()
+    messages.success(request, "Completed records were removed!")
+    return redirect('home')
 
 
 @login_required(login_url='login')
@@ -160,3 +166,22 @@ def reopenClosed(request, todo_id):
     todo.status = "OP"
     todo.save()
     return redirect('home')
+
+
+# ---- ARCHIVE PAGE
+@login_required(login_url='login')
+def archive(request):
+    todos = ArchivedTodo.objects.all().filter(task_owner=request.user.id).order_by('date_closed')
+    context = {'archive': todos}
+    return render(request, 'main/archive.html', context)
+
+# ---- Admin pages
+
+
+@login_required(login_url='login')
+def settings(request):
+    users = User.objects.all()
+    context = {'users': users}
+    for a in users:
+        print(a.username)
+    return render(request, 'main/settings.html', context)
