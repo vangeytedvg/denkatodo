@@ -32,7 +32,7 @@
 									{{ todo.task }}
 									<small class="text-muted">Created on {{ todo.date_created }}</small>
 									<small class="text-muted">Closed on {{ todo.date_closed }}</small>
-									<small class="text-muted">Duration {{ todo.diff_date }}</small>
+									<small class="text-muted">Duration {{ todo.diff_date }} (days) {{ todo.diff_time }}</small>
 								</td>
 							</tr>
 						{% endfor %}

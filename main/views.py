@@ -174,9 +174,8 @@ def archive(request):
     context = {'archive': todos}
     return render(request, 'main/archive.html', context)
 
+
 # ---- Admin pages
-
-
 @login_required(login_url='login')
 def settings(request):
     users = User.objects.all().order_by('username')

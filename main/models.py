@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime, date, time, timedelta
-import pytz
+from datetime import date, time, datetime, timedelta
 
 
 class TaskUser(models.Model):
@@ -32,8 +31,22 @@ class ArchivedTodo(models.Model):
 
     @property
     def diff_date(self):
-        delta = self.date_closed - self.date_created
-        return delta.days
+        d = self.date_closed
+        now = self.date_created
+        d1 = date(now.year, now.month, now.day)
+        d2 = date(d.year, d.month, d.day)
+        t = abs(d2 - d1).days
+        return t
+
+    @property
+    def diff_time(self):
+        d = self.date_closed
+        now = self.date_created
+        d1 = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)
+        d2 = str(d.hour) + ":" + str(d.minute) + ":" + str(d.second)
+        FMT = '%H:%M:%S'
+        tdelta = datetime.strptime(d1, FMT) - datetime.strptime(d2, FMT)
+        return tdelta
 
 
 class Todo(models.Model):
@@ -55,6 +68,25 @@ class Todo(models.Model):
     def is_from_today(self):
         # ---- Check if todo was entered today
         return date.today() == self.date_created.date()
+
+    @property
+    def diff_date(self):
+        d = self.date_closed
+        now = self.date_created
+        d1 = date(now.year, now.month, now.day)
+        d2 = date(d.year, d.month, d.day)
+        t = abs(d2 - d1).days
+        return t
+
+    @property
+    def diff_time(self):
+        d = self.date_closed
+        now = self.date_created
+        d1 = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)
+        d2 = str(d.hour) + ":" + str(d.minute) + ":" + str(d.second)
+        FMT = '%H:%M:%S'
+        tdelta = datetime.strptime(d1, FMT) - datetime.strptime(d2, FMT)
+        return tdelta
 
     @property
     def is_afew_momentsago(self):
