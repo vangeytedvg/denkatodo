@@ -1,0 +1,50 @@
+{%  extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container-fluid" id="wrapper">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="card-header text-center">
+					<h3 class="card-title" id="title-font3">Tasks for {{ tuser.user }}</h3>
+				</div>
+				<div>
+					<div class="card-body">
+						<!-- Form to enter the todo task -->
+					</div>
+				</div>
+				<div>
+					{{ form }}
+				</div>
+				<div class="card card-body">
+					<table class="table table-sm">
+						<tr>
+							<th>Task</th>
+							<th>Date Created</th>
+							<td>Status</td>
+						</tr>
+						{% for task in usertodos %}
+							<tr>
+								<td>
+									{{ task.task }}
+								</td>
+								<td>
+									<small class="text-muted">Created on {{ task.date_created }}</small>
+								<td>
+									<small class="text-muted">
+									{% if task.date_closed %}
+										Closed
+									{% else %}
+										Open
+									{% endif %}
+								</small>
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+					
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -71,6 +71,11 @@ class Todo(models.Model):
 
     @property
     def diff_date(self):
+        """
+        "  Purpose    : Calculate duration in days
+        "  Parameters : 
+        "  returns    : Day delta
+        """
         d = self.date_closed
         now = self.date_created
         d1 = date(now.year, now.month, now.day)
@@ -80,6 +85,11 @@ class Todo(models.Model):
 
     @property
     def diff_time(self):
+        """
+        "  Purpose    : Returns the elapsed time between creation and completion
+        "  Parameters :  
+        "  returns    : Time delta
+        """
         d = self.date_closed
         now = self.date_created
         d1 = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)

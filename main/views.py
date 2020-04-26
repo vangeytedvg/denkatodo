@@ -8,7 +8,7 @@
 from django.shortcuts import render, redirect
 from .models import Todo, TaskUser, ArchivedTodo
 from django.contrib.auth import authenticate, login, logout
-from .forms import TodoForm, CreateUserForm
+from .forms import TodoForm, CreateUserForm, DispatcherForm
 from django.contrib import messages
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -21,17 +21,17 @@ from .decorators import unauthenticated_user
 @login_required(login_url='login')
 def home(request):
     """ Home Page of the application """
-    print(request.user)
     # How to filter only the task for this user
     todos = Todo.objects.all().filter(task_owner=request.user.id).order_by('-id')
     # This the trick to set the default user in the task_owner
     # listbox!
-    form = TodoForm(initial={'task_owner': request.user})
+    form = TodoForm()
+    print(request.user.is_superuser)
+    if request.method == "POST":
+        form = TodoForm(initial={'task_owner': request.user})
 
     lasttodo = Todo.objects.last()
-
     context = {'todos': todos, 'lasttodo': lasttodo, 'form': form}
-
     return render(request, 'main/home.html', context)
 
 
@@ -91,7 +91,6 @@ def registerPage(request):
 @login_required(login_url='login')
 def addTodo(request):
     form = TodoForm()
-    print("User id : ", request.user.id)
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
@@ -182,3 +181,24 @@ def settings(request):
     context = {'users': users}
 
     return render(request, 'main/settings.html', context)
+
+
+@login_required(login_url='login')
+def getUserTodos(request, user_id):
+    tu = TaskUser.objects.get(pk=user_id)
+    ll = Todo.objects.all().filter(task_owner=user_id)
+    context = {'usertodos': ll, 'tuser': tu}
+    return render(request, 'main/userTodos.html', context)
+
+
+@login_required(login_url='login')
+def dispatchTodo(request):
+    # ---- Admin dispatching of tasks
+    usertodos = Todo.objects.all().order_by('-id')
+    form = DispatcherForm()
+    if request.method == "POST":
+        form = DispatcherForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form': form, 'usertodos': usertodos}
+    return render(request, 'main/dispatcher.html', context)

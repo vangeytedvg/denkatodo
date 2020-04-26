@@ -7,20 +7,20 @@
 				<div class="row">
 					{% for user in users %}
 						{% if user.is_superuser %}
-						<div>
-							<div class="settings_box" style="margin-left: 10px;"><img src="{% static 'images/user.png' %}" alt="Card image"></div>
-							<div class="text-center settings_box" style="margin-left: 10px">{{ user.username }} (admin)</div>
-						</div>
-						{% elif user.is_staff and not user.is_superuser %}
-						<div>
-							<div class="staffbox" style="margin-left: 10px; padding-right: 10px"><img src="{% static 'images/user.png' %}" alt="Card image"></div>
-							<div class="text-center settings_box" style="margin-left: 10px">{{ user.username }} (staff)</div>
-						</div>
+							<div>
+								<div class="settings_box" style="margin-left: 10px;"><a href="{% url 'detailuser' user.id %}"><img src="{% static 'images/user.png' %}"></a></div>
+								<div class="text-center settings_box" style="margin-left: 10px"><a href="{% url 'detailuser' user.id %}">{{ user.username }} (admin)</div>
+							</div>
+							{% elif user.is_staff and not user.is_superuser %}
+							<div>
+								<div class="staffbox" style="margin-left: 10px; padding-right: 10px"><a href="{% url 'detailuser' user.id %}"><img src="{% static 'images/user.png' %}"></a></div>
+								<div class="text-center settings_box" style="margin-left: 10px">{{ user.username }} (staff)</div>
+							</div>
 						{% else %}
-						<div>
-							<div class="normalbox" style="margin-left: 10px"><img src="{% static 'images/user.png' %}" alt="Card image"></div>
-							<div class="text-center" style="margin-left: 10px">{{ user.username }}</div>
-						</div>
+							<div>
+								<div class="normalbox" style="margin-left: 10px"><a href="{% url 'detailuser' user.id %}"><img src="{% static 'images/user.png' %}"</a></div>
+								<div class="text-center" style="margin-left: 10px">{{ user.username }}</div>
+							</div>
 						{% endif %}
 					{% endfor %}
 				</div>

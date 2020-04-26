@@ -1,0 +1,62 @@
+{%  extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container-fluid" id="wrapper">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="card-header text-center">
+					<h3 class="card-title" id="title-font3">Tasks for {{ tuser.user }}</h3>
+				</div>
+				<div>
+					<div class="card-body">
+						<!-- Form to enter the todo task -->
+					</div>
+				</div>
+				<form class="whattodotitle" action="{% url 'dispatch' %}" method="POST">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="input-group">
+							{{ form.as_p }}
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-success" id="add-btn"><i class="fas fa-save"></i> ADD</button>
+							</span>
+						</div>
+					</div>
+				</form>
+				<div class="card card-body">
+					<table class="table table-sm">
+						<tr>
+							<th>Task</th>
+							<th>Assignee</th>
+							<th>Date Created</th>
+							<td>Status</td>
+						</tr>
+						{% for task in usertodos %}
+							<tr>
+								<td>
+									{{ task.task }} 
+								</td>
+								<td>
+									{{ task.task_owner}}
+								</td>
+								<td>
+									<small class="text-muted">Created on {{ task.date_created }}</small>
+									<td>
+										<small class="text-muted">
+										{% if task.date_closed %}
+											Closed
+										{% else %}
+											Open
+										{% endif %}
+										</small>
+									</td>
+								</tr>
+							{% endfor %}
+						</table>
+						
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

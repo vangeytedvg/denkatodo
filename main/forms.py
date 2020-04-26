@@ -16,7 +16,14 @@ class TodoForm(ModelForm):
     class Meta:
         model = Todo
         fields = '__all__'
-        exclude = ['task_owner', 'status']
+        exclude = ['task_owner', 'status', 'date_closed']
+
+
+class DispatcherForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = '__all__'
+        exclude = ['date_closed']
 
 
 class CreateUserForm(UserCreationForm):
