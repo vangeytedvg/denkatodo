@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">About me</h1>
+            
+            
+        </div>
+    </div>
+<div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+        	<div class="col-md-12">
+                <h2>Experience</h2>
+                <div>I'm a self-thought programmer who started programming at the age of 17, going back more 30 years ago.</div>
+                <div>Over the years I learned several programming languages, the latest of them are C#, Flutter and now I focus primeraly on Python.</div>
+                <p></p>
+                <h4>Languages I've used</h4>
+                <ul style="list-style-type:disc;">
+  					<li>Basic</li>
+  					<li>Pasal</li>
+  					<li>Visual Basic</li>
+  					<li>C++</li>
+  					<li>C#</li>
+  					<li>Python</li>
+				</ul> 
+				<p></p><p><a class="btn btn-secondary" href="{% static 'pdf/CV_Danny_Van_Geyte.pdf' %}" role="button">My CV</a></p>
+                <h2>Life...</h2>
+                <div>I'm interested in technology, astronomy, nature, food, my Rottweiler and many more...</div>
+                <p></p>
+                <p><a class="btn btn-secondary" href="/portfolio" role="button">&laquo;Back</a></p>
+            </div>
+        </div>
+</div>
+{% endblock %}
