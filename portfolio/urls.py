@@ -9,6 +9,6 @@ urlpatterns = [
     path('todonfire/', views.todoonfirePage, name='todonfire'),
     path('scampy/', views.scampyPage, name='scampy'),
 
-    path('blog/', views.PostListView.as_view()),
-    path('blog/new/', views.P, name='blog_new'),
+    path('blog/', views.PostListView.as_view(), name='blog'),
+    path('blog/new/', views.post_new, name='blog_new'),
 ]

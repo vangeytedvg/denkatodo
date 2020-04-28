@@ -23,7 +23,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('blog_new', pk=post.pk)
+            return redirect('blog_new')
     else:
         form = PostForm()
     return render(request, 'create_blog_item.html', {'form': form})
