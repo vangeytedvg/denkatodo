@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">Todos On Fire</h1>
+			<h1 class="display-3" id="title-fontjt">Todos On Fire</h1>
 		</div>
 	</div>
 	<div class="container">
@@ -11,6 +12,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2>How it works</h2>
+				<p>Todos On Fire is an app for Android written with the popular Flutter framework.  It uses FireStore as a database backend.  
+				This allows updating records in real-time.  If different users use the application and one of them closes a todo, the others are 
+				immediately informed about this without having to reload the app page.
+				Screenshot not yet available, but feel free to checkout the source code...
+				</p>
 			</div>
 		</div>
 	</div>

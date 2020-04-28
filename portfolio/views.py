@@ -1,6 +1,37 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .models import Blog
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from .forms import PostForm
 
-# Create your views here.
+
+class PostListView(ListView):
+    # Return the ten last blog items
+    model = Blog 
+    template_name = 'blog.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Blog.objects.filter(status=1).order_by('-date_created')[:10]
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('blog_new', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'create_blog_item.html', {'form': form})
+
+def PostList(request):
+    queryset = Blog.objects.filter(status=1).order_by('-date_created')
+    context = {'post_list': queryset}
+    return render (request, 'blog.html', context)
 
 
 def home(request):
@@ -29,3 +60,4 @@ def todoonfirePage(request):
 def scampyPage(request):
     context = {}
     return render(request, 'scampy.html', context)
+

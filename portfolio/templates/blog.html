@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
+<div class="jumbotron">
+	<div class="container">
+		<h3 class="card-title title-font" id="title-fontjt">Blog</h3>
+		<h2>What's going on in my world...</h2>
+		<p><a class="btn btn-secondary" href="/portfolio" role="button">&laquo;Back</a></p>
+	</div>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in posts %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% block sidebar %} 
+        {% include 'sidebar.html' %} 
+        {% endblock sidebar %}
+    </div>
+</div>
+{%endblock%}

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">SCAMPY</h1>
+			<h1 class="display-3" id="title-fontjt">SCAMPY</h1>
 		</div>
 	</div>
 	<div class="container">
@@ -11,6 +12,22 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2>How it works</h2>
+				<p>SCAMPY Got it's name when I was thinking of a name when I started the project. I was going to make this application a friend of
+				mine.  He never realy used a computer let it be scanning and email software.  He told me he needed a simple program to create an email, use
+				his gmail account for this, and that he needed to scan documents.  The program he was thinking of would do this in one shot.
+				So I came up with Scan And Mail with PYthon.  This tool only sends email, but lets the user scan documents related to a specific email and then
+				send them via Gmail.
+				The screenshots are in Dutch because my friend only speaks Dutch.  In the future this program will integrate the QT Translation system.
+				<h3>Here are some screenshots</h3>
+					<p></p>
+					<h5>The main screen</h5>
+					<img src="{% static 'images/ps/scampy/main.png' %}">
+					<h5>Creating a new email</h5>
+					<img src="{% static 'images/ps/scampy/newmail.png' %}">
+					<h5>The setting screen</h5>
+					<img src="{% static 'images/ps/scampy/settings.png' %}">
+					<h5>Testing Scanner</h5>
+					<img src="{% static 'images/ps/scampy/testscanner.png' %}">
 			</div>
 		</div>
 	</div>

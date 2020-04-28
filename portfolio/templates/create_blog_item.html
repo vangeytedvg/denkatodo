@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
+<div class="jumbotron">
+	<div class="container">
+		<h3 class="card-title title-font" id="title-fontjt">Blog</h3>
+		<h2>What's going on in my world...</h2>
+		<p><a class="btn btn-secondary" href="/portfolio" role="button">&laquo;Back</a></p>
+	</div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">New blog item</h5>
+    </div>
+    <div class="card-body">
+        <p>Hallo</p>
+        <h2>New post</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
