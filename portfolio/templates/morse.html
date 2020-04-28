@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
+<div class="jumbotron">
+	<div class="container">
+		<h3 class="card-title title-font" id="title-fontjt">Morse code trainer</h3>
+		<h2> .... . .-.. .-.. --- .-- --- .-. .-.. -.. </h2>
+		<p>Challenge, try to decode the above morse code ;-)</p>
+		<p><a class="btn btn-secondary" href="/portfolio" role="button">&laquo;Back</a></p>
+	</div>
+</div>
+<div class="container">
+	<!-- Example row of columns -->
+	<div class="row">
+		<div class="col-md-10">
+			<h2>How it works</h2>
+			<p>As a said in the introduction, I always wanted to learn morse code. So, I wrote a Python program for this
+				purpose.<p>
+					<p>While having a lot of fun making the program, I actually learned Morse-code!<p>
+							<p>The interface of the application is made with Qt-Designer. And is then compiled into
+								python code<p>
+									<h3>Here are some screenshots</h3>
+									<p></p>
+									<h5>The main screen</h5>
+									<img src="{% static 'images/ps/morse/mainscreen.png' %}" <p>
+								</p>
+								<p>As you can see, the interface is quite simple. The user can either use real morse
+									sounds or the so-called Dit Dah sounds. That means that
+									a dot '.' is pronounced as 'Dit' and a dash '-' is pronounced as 'Dah'</p>
+								<p>The transmission speed can also be set. This tries to approach the <a
+										href="https://morsecode.world/international/timing.html">WPM</a> (Words Per
+									Minute) standard.
+									<p></p>
+									<hr>
+									<h5>Lightbulb mode</h5>
+									<p>Morse code not consists of sounds, one can also learn to read light signals
+										transmitting morse. On boats this is used often to communicate in silence.</p>
+									<p>The morse trainer can simulate this by using a flashing panel in the interface.
+									</p>
+									<img src="{% static 'images/ps/morse/lbulb.png' %}" <p>
+								</p>
+								<hr>
+								<h5>Text transmission in action</h5>
+								<img src="{% static 'images/ps/morse/transmit.png' %}" <h5>
+		</div>
+	</div>
+</div>
+{% endblock %}

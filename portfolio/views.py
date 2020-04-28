@@ -14,3 +14,18 @@ def home(request):
 def aboutme(request):
     context = {}
     return render(request, 'aboutme.html', context)
+
+
+def morsePage(request):
+    context = {}
+    return render(request, 'morse.html', context)
+
+
+def todoonfirePage(request):
+    context = {}
+    return render(request, 'todoonfire.html', context)
+
+
+def scampyPage(request):
+    context = {}
+    return render(request, 'scampy.html', context)

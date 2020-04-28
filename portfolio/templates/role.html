@@ -1,8 +1,10 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
 <main role="main">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-3">Danny Van Geyte</h1>
+            <h1 class="display-3" id="title-fontjt">Danny Van Geyte</h1>
             <p>Passionate about writing software and learn people how to use it!</p>
             <p><a class="btn btn-primary btn-lg" href="{% url 'aboutme' %}" role="button">About me... &raquo;</a></p>
         </div>
@@ -11,38 +13,38 @@
         <!-- Example row of columns -->
         <div class="row">
             <div class="col-md-4">
-                <h2>Todo app</h2>
+                <h2 id="title-fontj">Todo app</h2>
                 <p>A simple Todo application, yes yet another todo app (YATA).  This web application is made with Django 3.0.
                     It uses a Postgres database backend.  It features supervising of users and their todo's.  The admin can ssign
                     tasks to users and follow up what they are doing.
                 </p>
-                <p><a class="btn btn-secondary" href="http://denkatech.pythonanywhere.com/" role="button">Live demo &raquo;</a>
-                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/denkatodo" role="button">Source code &raquo;</a></p>                
+                <p><a class="btn btn-secondary" href="http://denkatech.pythonanywhere.com/" role="button" target="_blank">Live demo &raquo;</a>
+                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/denkatodo" role="button" target="_blank">Source code &raquo;</a></p>                
             </div>
             <div class="col-md-4">
-                <h2>Morse Code Trainer</h2>
-                <p>I always wanted to learn Morse code;  Instead of using existing software, I made one myself.  Using Python 3.7
-                and PyQt5 for the GUI.  Learning morse has become easier this way!</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/morsepy" role="button">Source code &raquo;</a></p>
+                <h2 id="title-fontj">Morse Code Trainer</h2>
+                <p>I always wanted to learn Morse code. Instead of using existing software, I made one myself.  Using Python 3.7
+                and PyQt5 for the GUI.  Learning morse has become easier and more fun this way!</p>
+                <p><a class="btn btn-secondary" href="{% url 'morse' %}" role="button">View details &raquo;</a>
+                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/morsepy" role="button" target="_blank">Source code &raquo;</a></p>
             </div>
             <div class="col-md-4">
-                <h2>Todo's On Fire</h2>
+                <h2 id="title-fontj">Todo's On Fire</h2>
                 <p>A todo application written in Flutter for Android.  It uses FireStore as a database backend.  Still in progress
                 of development</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/TodoOnFire" role="button">Source code &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="todonfire" role="button">View details &raquo;</a>
+                <a class="btn btn-secondary" href="https://github.com/vangeytedvg/TodoOnFire" role="button" target="_blank">Source code &raquo;</a></p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <h2>SCAMPY</h2>
+                <h2 id="title-fontj">SCAMPY</h2>
                 <p>The acronym for this application written in Python and PyQt5 means Scan And Mail with Python. I wrote this
                     program for a friend of mine who has little experience with mail, scanners and computers usage in general.
                     The program allows creating an email, scan de the documents through <a href="https://pypi.org/project/python-sane/">SANE</a> and the use <a href="https://pypi.org/project/yagmail/">Yagmail</a> to send the email and the scanned documents via Gmail.</p>
             </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-            <a class="btn btn-secondary" href="https://github.com/vangeytedvg/SCAMPY_DEV" role="button">Source code &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{% url 'scampy' %}" role="button">View details &raquo;</a>
+            <a class="btn btn-secondary" href="https://github.com/vangeytedvg/SCAMPY_DEV" role="button" target="_blank">Source code &raquo;</a></p>
         </div>
     </div>
     </div> <!-- /container -->

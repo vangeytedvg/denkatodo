@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
+{%block content%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simple.css' %}">
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-3">About me</h1>
-            
-            
+            <h1 class="display-3 font-size:11px" id="title-fontj">About me</h1>
         </div>
     </div>
 <div class="container">
@@ -19,7 +18,7 @@
                 <h4>Languages I've used</h4>
                 <ul style="list-style-type:disc;">
   					<li>Basic</li>
-  					<li>Pasal</li>
+  					<li>Pasal (Turbo Pascal & Delphi)</li>
   					<li>Visual Basic</li>
   					<li>C++</li>
   					<li>C#</li>
@@ -37,6 +36,7 @@
 				</ul> 
 				<p></p><p><a class="btn btn-secondary" href="{% static 'pdf/CV_Danny_Van_Geyte.pdf' %}" role="button">My CV</a></p>
                 <h2>Life...</h2>
+                <p>I have a lovely daughter who is very clever with computer too...</p>
                 <div>I'm interested in technology, astronomy, nature, food, my Rottweiler and many more...</div>
                 <p></p>
                 <p><a class="btn btn-secondary" href="/portfolio" role="button">&laquo;Back</a></p>
