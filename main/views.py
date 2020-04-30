@@ -125,12 +125,12 @@ def deleteCompleted(request):
         arch.save()
         item.delete()
     messages.success(request, "Completed records were removed!")
-    return redirect('home')
+    return redirect('/')
 
 
 @login_required(login_url='login')
 def deleteAll(request):
-    return redirect('home')
+    return redirect('/')
 
 
 @login_required(login_url='login')
@@ -141,7 +141,7 @@ def completeTodo(request, todo_id):
     print(datetime.now())
     todo.status = "DN"
     todo.save()
-    return redirect('home')
+    return redirect('/')
 
 
 @login_required(login_url='login')
@@ -150,7 +150,7 @@ def inprogressTodo(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.status = "IP"
     todo.save()
-    return redirect('home')
+    return redirect('/')
 
 
 @login_required(login_url='login')
@@ -159,7 +159,7 @@ def recallTodo(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.status = "OP"
     todo.save()
-    return redirect('home')
+    return redirect('/')
 
 
 @login_required(login_url='login')
@@ -168,7 +168,7 @@ def reopenClosed(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.status = "OP"
     todo.save()
-    return redirect('home')
+    return redirect('/')
 
 
 # ---- ARCHIVE PAGE
