@@ -9,6 +9,14 @@ STATUS = (
 )
 
 
+class Visitors(models.Model):
+    title = models.DateTimeField(auto_now=True, null=True, blank=True)
+    counter = models.IntegerField()
+
+    def __str__(self):
+        return str(self.counter)
+
+
 # Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=200, unique=True)

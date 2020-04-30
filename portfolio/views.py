@@ -1,9 +1,16 @@
+"""
+" Porfolio/views.py
+"
+"""
+
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Blog
+from .models import Blog, Visitors
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .forms import PostForm
 
 
@@ -18,9 +25,6 @@ class PostListView(ListView):
 
 def mainpage(request):
     return redirect('portfolio/home.html')
-
-def home(request):
-    return redirect('main/home.html')
 
 def post_new(request):
     if request.method == "POST":
@@ -43,6 +47,16 @@ def PostList(request):
 def home(request):
     """ Home Page of the application """
     # How to filter only the task for this user
+    # Implemented a visitor counter in the application
+    pageCounter = Visitors.objects.all().count()
+    if pageCounter == 0:
+        # Create new counter
+        new_entry=Visitors(counter=0)
+        new_entry.save()
+    pageCounter = Visitors.objects.get(pk=1)
+    pageCounter.counter += 1
+    pageCounter.save()
+    
 
     context = {}
     return render(request, 'home.html', context)
@@ -66,4 +80,11 @@ def todoonfirePage(request):
 def scampyPage(request):
     context = {}
     return render(request, 'scampy.html', context)
+
+@login_required(login_url='login')
+def stats(request):
+    print(request)
+    stats = Visitors.objects.get(pk=1)
+    context = {'stats': stats}
+    return render(request, 'statistics.html', context)
 

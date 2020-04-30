@@ -23,7 +23,6 @@ def mainhome(request):
 
 @login_required(login_url='login')
 def home(request):
-    print("HOME REQUESTED")
     """ Home Page of the application """
     # How to filter only the task for this user
     todos = Todo.objects.all().filter(task_owner=request.user.id).order_by('-id')

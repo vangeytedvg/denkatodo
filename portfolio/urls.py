@@ -12,4 +12,6 @@ urlpatterns = [
 
     path('blog/', views.PostListView.as_view(), name='blog'),
     path('blog/new/', views.post_new, name='blog_new'),
+    
+    path('statistics/', views.stats, name='stats')
 ]
