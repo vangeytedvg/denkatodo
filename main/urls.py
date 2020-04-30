@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name='logout'),
 
-    path('dispatch/', views.dispatchTodo, name='dispatch'),
+    path('dispatch', views.dispatchTodo, name='dispatch'),
 
     path('add/', views.addTodo, name='add'),
     path('complete/<str:todo_id>', views.completeTodo, name='complete'),

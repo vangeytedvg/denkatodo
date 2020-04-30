@@ -18,8 +18,12 @@ from .decorators import unauthenticated_user
 # ---- MAIN PAGE
 
 
+def mainhome(request):
+    return redirect('portfolio/home.html')
+
 @login_required(login_url='login')
 def home(request):
+    print("HOME REQUESTED")
     """ Home Page of the application """
     # How to filter only the task for this user
     todos = Todo.objects.all().filter(task_owner=request.user.id).order_by('-id')
@@ -90,6 +94,7 @@ def registerPage(request):
 # ---- This section contains the views for managing todos
 @login_required(login_url='login')
 def addTodo(request):
+    print("ADD REQUESTED")
     form = TodoForm()
     if request.method == "POST":
         form = TodoForm(request.POST)
@@ -98,7 +103,7 @@ def addTodo(request):
             t.task_owner_id = request.user.id
             t.status = "OP"
             t.save()
-            return redirect('home')
+            return redirect('/')
     currentUser = request.user
     context = {'form': form, 'currentUser': currentUser}
     return render(request, 'main/home.html', context)

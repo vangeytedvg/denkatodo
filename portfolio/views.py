@@ -16,6 +16,12 @@ class PostListView(ListView):
     def get_queryset(self):
         return Blog.objects.filter(status=1).order_by('-date_created')[:10]
 
+def mainpage(request):
+    return redirect('portfolio/home.html')
+
+def home(request):
+    return redirect('main/home.html')
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)

@@ -25,7 +25,7 @@ SECRET_KEY = 'ao)pj0^z&m8p336ze+&=kiq)nry^2#h9p#7y#+gv(71ha=54e^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'http://denkatech.pythonanywhere.com/']
 
 
 # Application definition
